@@ -1,16 +1,13 @@
 import { data } from '../data';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-export const ProductList = () => {
-	const [selectedProductId, setSelectedProductId] = useState(null);
-
+export const ProductList = ({setSelectedProduct}) => {
     const handleProductSelect = (productId) => {
-        setSelectedProductId(productId);
+        setSelectedProduct(productId);
 		console.log('ID del producto seleccionado:', handleProductSelect);
 		
     };
 	return (
-		<div class="container">
+		<div className="container">
 			<br/>
 			<div className='container-items'>
 			{data.map(product => (
@@ -20,12 +17,8 @@ export const ProductList = () => {
 					</figure>
 					<div className='info-product'>
 						<h2>{product.title}</h2>
-                        <p className='price'>${product.price}</p>
-						<p className='instructor'>Instructor: {product.instructor}</p>
-						<p className='level'>Nivel: {product.level}</p>
-						<p className='description'>{product.description}</p>
-                        <p className='duration'>Duracion: {product.duration}</p>
-                        
+						<br/>
+                        <p className='description'>{product.description}</p>
 						<Link to={`/product/${product.id}`}>
 						<button onClick={() => handleProductSelect(product.id)}>Ver detalles</button>
 						</Link>
@@ -33,6 +26,7 @@ export const ProductList = () => {
 				</div>
 			))}
 		</div>
+		<br/>
 		</div>
 	);
 };
