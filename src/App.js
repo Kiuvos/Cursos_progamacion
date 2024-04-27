@@ -8,13 +8,13 @@ import { Footer } from './components/Footer';
 import About from './components/About';
 import {ProductDetail} from './components/ProductDetail';
 import {data} from './data'
+import Contact from './components/Contact';
+import Services from './components/Services';
 
 function App() {  
   const [selectedProductId, setSelectedProductId] = useState(null);
 
-    const handleProductSelect = (productId) => {
-        setSelectedProductId(productId);
-  };
+    
   
   return (
     <Router>
@@ -23,10 +23,10 @@ function App() {
 		
 		/>
         <Routes>
-          <Route path="/acerca">Servicios</Route>
+          <Route path="/services" element={<Services/>}>Servicios</Route>
           <Route path="/about" element={<About/>}>Acerca de</Route>
-          <Route path="/contacto">Contacto</Route>
-          <Route path="/" element={<ProductList products={data} handleProductSelect={handleProductSelect} />} />
+          <Route path="/contact"element={<Contact/>}>Contacto</Route>
+          <Route path="/" element={<ProductList products={data} setSelectedProduct={setSelectedProductId} />} />
           <Route path="/product/:productId" element={<ProductDetail selectedProductId={selectedProductId} />} />
                 
         </Routes>
